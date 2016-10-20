@@ -13,4 +13,9 @@ public class TestController {
     public String test() {
         return "it work so much";
     }
+
+    @RequestMapping(value = "/login")
+    public String login() {
+        return "login page is here";
+    }
 }
