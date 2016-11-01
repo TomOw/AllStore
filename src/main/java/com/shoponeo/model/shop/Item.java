@@ -1,6 +1,8 @@
 package com.shoponeo.model.shop;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by owczatom on 2016-10-21.
@@ -39,6 +41,9 @@ public class Item {
     @JoinColumn(name = "STORE_ID", nullable = false)
     private Store store;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = CascadeType.ALL)
+    private Set<Review> reviews;
+
     public Item() {
     }
 
@@ -50,6 +55,7 @@ public class Item {
         this.photo = photo;
         this.noInStock = noInStock;
         this.avgRating = avgRating;
+        this.reviews = new HashSet<>();
     }
 
     public Item(String name, int price, String category, String description, String photo, int noInStock, double avgRating, Store store) {
@@ -61,6 +67,7 @@ public class Item {
         this.noInStock = noInStock;
         this.avgRating = avgRating;
         this.store = store;
+        this.reviews = new HashSet<>();
     }
 
     public int getId() {
@@ -129,6 +136,23 @@ public class Item {
 
     public void setStore(Store store) {
         this.store = store;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void addReview(Review review) {
+        if (this.reviews == null) {
+            this.reviews = new HashSet<>();
+            this.reviews.add(review);
+        } else {
+            this.reviews.add(review);
+        }
     }
 
     @Override

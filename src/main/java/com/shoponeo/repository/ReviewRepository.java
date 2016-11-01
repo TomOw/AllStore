@@ -1,0 +1,17 @@
+package com.shoponeo.repository;
+
+import com.shoponeo.model.shop.Item;
+import com.shoponeo.model.shop.Review;
+import org.springframework.stereotype.Repository;
+
+import javax.transaction.Transactional;
+
+/**
+ * Created by Tomasz on 01.11.2016.
+ */
+@Repository
+@Transactional
+public interface ReviewRepository {
+
+    Review addReviewToItem(Item item, Review review);
+}
