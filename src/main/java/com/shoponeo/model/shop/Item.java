@@ -44,6 +44,9 @@ public class Item {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = CascadeType.ALL)
     private Set<Review> reviews;
 
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "items")
+    private Set<Order> orders;
+
     public Item() {
     }
 
@@ -152,6 +155,19 @@ public class Item {
             this.reviews.add(review);
         } else {
             this.reviews.add(review);
+        }
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void addOrder(Order order) {
+        if (this.orders == null) {
+            this.orders = new HashSet<>();
+            this.orders.add(order);
+        } else {
+            this.orders.add(order);
         }
     }
 

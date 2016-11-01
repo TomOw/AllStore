@@ -34,6 +34,9 @@ public class Store {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "store", cascade = CascadeType.ALL)
     private Set<Item> items;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "store", cascade = CascadeType.ALL)
+    private Set<Order> orders;
+
     public Store() {
     }
 
@@ -117,6 +120,28 @@ public class Store {
 
     public void setItems(Set<Item> items) {
         this.items = items;
+    }
+
+    public void addItem(Item item) {
+        if (this.items == null) {
+            this.items = new HashSet<>();
+            this.items.add(item);
+        } else {
+            this.items.add(item);
+        }
+    }
+
+    public void addOrder(Order order) {
+        if (this.orders == null) {
+            this.orders = new HashSet<>();
+            this.orders.add(order);
+        } else {
+            this.orders.add(order);
+        }
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
     }
 
     @Override

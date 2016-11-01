@@ -1,10 +1,8 @@
 package com.shoponeo.controller;
 
-import com.shoponeo.model.shop.Item;
-import com.shoponeo.model.shop.Review;
-import com.shoponeo.model.shop.Store;
-import com.shoponeo.model.shop.StoreAddress;
+import com.shoponeo.model.shop.*;
 import com.shoponeo.repository.ItemRepository;
+import com.shoponeo.repository.OrderRepository;
 import com.shoponeo.repository.ReviewRepository;
 import com.shoponeo.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +27,9 @@ public class TestController {
 
     @Autowired
     ReviewRepository reviewRepository;
+
+    @Autowired
+    OrderRepository orderRepository;
 
     @RequestMapping(value = "/test")
     public String test() {
@@ -88,5 +90,24 @@ public class TestController {
         Review review = new Review("desc");
         reviewRepository.addReviewToItem(item, review);
         return item;
+    }
+
+    @RequestMapping(value = "/or")
+    public Order order() {
+        Order order = new Order(5.0);
+        //Item item = new Item("tea", 40, "cat", "desc", "photo", 500, 5.0);
+        List<Item> list = new ArrayList<>();
+        Item item = itemRepository.getItemsByName("laptok").get(0);
+        list.add(item);
+        list.add(itemRepository.getItemsByName("talerz").get(0));
+        item.addOrder(order);
+        order.getItems().add(item);
+        storeRepository.addOrder(storeRepository.getStoreByName("eigth").get(0), order, list);
+        return order;
+    }
+
+    @RequestMapping(value = "/orstore")
+    public List<Order> o() {
+        return orderRepository.getOrdersByStoreName("eigth");
     }
 }

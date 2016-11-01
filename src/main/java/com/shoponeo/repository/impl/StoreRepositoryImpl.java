@@ -1,6 +1,7 @@
 package com.shoponeo.repository.impl;
 
 import com.shoponeo.model.shop.Item;
+import com.shoponeo.model.shop.Order;
 import com.shoponeo.model.shop.Store;
 import com.shoponeo.model.shop.StoreAddress;
 import com.shoponeo.repository.StoreRepository;
@@ -56,5 +57,20 @@ public class StoreRepositoryImpl implements StoreRepository {
         item.setStore(store);
         entityManager.merge(store);
         return item;
+    }
+
+    @Override
+    public Order addOrder(Store store, Order order, List<Item> items) {
+        for (Item item :
+                items) {
+            item.addOrder(order);
+            item.setStore(store);
+            store.addItem(item);
+            order.getItems().add(item);
+        }
+        store.addOrder(order);
+        order.setStore(store);
+        entityManager.merge(store);
+        return order;
     }
 }
