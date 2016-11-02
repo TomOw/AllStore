@@ -71,6 +71,14 @@ public class Order {
         this.store = store;
     }
 
+    public void calculatePrice() {
+
+        for (Item item :
+                this.items) {
+
+        }
+    }
+
     @Override
     public String toString() {
         return "Order{" +

@@ -20,7 +20,7 @@ public class Item {
     private String name;
 
     @Column(name = "PRICE")
-    private int price;
+    private double price;
 
     @Column(name = "CATEGORY")
     private String category;
@@ -50,7 +50,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(String name, int price, String category, String description, String photo, int noInStock, double avgRating) {
+    public Item(String name, double price, String category, String description, String photo, int noInStock, double avgRating) {
         this.name = name;
         this.price = price;
         this.category = category;
@@ -61,7 +61,7 @@ public class Item {
         this.reviews = new HashSet<>();
     }
 
-    public Item(String name, int price, String category, String description, String photo, int noInStock, double avgRating, Store store) {
+    public Item(String name, double price, String category, String description, String photo, int noInStock, double avgRating, Store store) {
         this.name = name;
         this.price = price;
         this.category = category;
@@ -89,11 +89,11 @@ public class Item {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

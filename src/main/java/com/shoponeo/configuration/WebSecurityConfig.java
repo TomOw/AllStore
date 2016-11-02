@@ -1,7 +1,6 @@
 package com.shoponeo.configuration;
 
 import com.shoponeo.service.CustomUserDetailsService;
-import com.shoponeo.service.impl.CustomUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -42,14 +41,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.and()
                 .csrf().disable()
                 .authorizeRequests()
-                .anyRequest().authenticated()
-                //.anyRequest().permitAll();
+                //.anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/test").permitAll()
-
                 .and()
                 .formLogin().loginPage("/login")
                 .defaultSuccessUrl("/")

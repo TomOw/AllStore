@@ -6,6 +6,7 @@ import com.shoponeo.repository.OrderRepository;
 import com.shoponeo.repository.ReviewRepository;
 import com.shoponeo.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,6 +58,7 @@ public class TestController {
         return store;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/store/{name}")
     public List<Store> getStore(@PathVariable("name") String name) {
         List<Store> list = storeRepository.getStoreByName(name);
@@ -68,7 +70,7 @@ public class TestController {
     @RequestMapping(value = "/addItem")
     public Item add() {
         Store store = storeRepository.getStoreByName("eigth").get(0);
-        Item item = new Item("talerz", 2500, "category3", "tablety", "photo", 400, 6.0);
+        Item item = new Item("czajnik", 100.99, "category3", "tablety", "photo", 400, 6.0);
         storeRepository.addItemToStore(store, item);
         return item;
     }
@@ -94,14 +96,15 @@ public class TestController {
 
     @RequestMapping(value = "/or")
     public Order order() {
-        Order order = new Order(5.0);
+        Order order = new Order();
         //Item item = new Item("tea", 40, "cat", "desc", "photo", 500, 5.0);
         List<Item> list = new ArrayList<>();
-        Item item = itemRepository.getItemsByName("laptok").get(0);
+        Item item = itemRepository.getItemsByName("czajnik").get(0);
         list.add(item);
-        list.add(itemRepository.getItemsByName("talerz").get(0));
+        list.add(itemRepository.getItemsByName("szklanka").get(0));
         item.addOrder(order);
         order.getItems().add(item);
+        order.calculatePrice();
         storeRepository.addOrder(storeRepository.getStoreByName("eigth").get(0), order, list);
         return order;
     }
