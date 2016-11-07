@@ -6,7 +6,6 @@ import com.shoponeo.repository.OrderRepository;
 import com.shoponeo.repository.ReviewRepository;
 import com.shoponeo.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,7 +43,7 @@ public class TestController {
 
     @RequestMapping(value = "/store")
     public Store testStore() {
-        Store store = new Store("eigth", 3.5, 45, 45);
+        Store store = new Store("store", 3.5, 45, 45);
         StoreAddress address = new StoreAddress("BR", "RIO", "SUPER", "32", "00333");
         store.setStoreAddress(address);
         address.setStore(store);
@@ -58,7 +57,6 @@ public class TestController {
         return store;
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/store/{name}")
     public List<Store> getStore(@PathVariable("name") String name) {
         List<Store> list = storeRepository.getStoreByName(name);
