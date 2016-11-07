@@ -58,11 +58,11 @@ public class TestController {
     }
 
     @RequestMapping(value = "/store/{name}")
-    public List<Store> getStore(@PathVariable("name") String name) {
+    public Store getStore(@PathVariable("name") String name) {
         List<Store> list = storeRepository.getStoreByName(name);
         Store store = list.get(0);
         //System.out.println(store.getItems());
-        return list;
+        return store;
     }
 
     @RequestMapping(value = "/addItem")
