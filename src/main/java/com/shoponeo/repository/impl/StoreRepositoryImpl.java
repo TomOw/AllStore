@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.From;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -72,5 +73,12 @@ public class StoreRepositoryImpl implements StoreRepository {
         order.setStore(store);
         entityManager.merge(store);
         return order;
+    }
+
+    @Override
+    public List<String> getAllStoreNames() {
+        Query query = entityManager.createQuery("select store.name from Store store");
+        List<String> resultList = query.getResultList();
+        return resultList;
     }
 }

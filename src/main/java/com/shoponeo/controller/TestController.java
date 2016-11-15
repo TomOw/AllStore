@@ -116,4 +116,9 @@ public class TestController {
     public List<String> c() {
         return categoryRepository.getAllCategories();
     }
+
+    @RequestMapping(value = "/storys")
+    public List<String> strings() {
+        return storeRepository.getAllStoreNames();
+    }
 }
