@@ -1,10 +1,7 @@
 package com.shoponeo.controller;
 
 import com.shoponeo.model.shop.*;
-import com.shoponeo.repository.ItemRepository;
-import com.shoponeo.repository.OrderRepository;
-import com.shoponeo.repository.ReviewRepository;
-import com.shoponeo.repository.StoreRepository;
+import com.shoponeo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +27,9 @@ public class TestController {
 
     @Autowired
     OrderRepository orderRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @RequestMapping(value = "/test")
     public String test() {
@@ -110,5 +110,10 @@ public class TestController {
     @RequestMapping(value = "/orstore")
     public List<Order> o() {
         return orderRepository.getOrdersByStoreName("eigth");
+    }
+
+    @RequestMapping(value = "/categories")
+    public List<String> c() {
+        return categoryRepository.getAllCategories();
     }
 }
