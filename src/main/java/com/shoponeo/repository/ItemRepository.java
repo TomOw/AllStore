@@ -15,6 +15,8 @@ public interface ItemRepository {
 
     List<Item> getItemsByName(String name);
 
+    Item getItemById(int id);
+
     List<Item> getItemsByCategory(String category);
 
 }

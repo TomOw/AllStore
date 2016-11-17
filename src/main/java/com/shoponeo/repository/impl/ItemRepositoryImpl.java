@@ -29,6 +29,11 @@ public class ItemRepositoryImpl implements ItemRepository {
     }
 
     @Override
+    public Item getItemById(int id) {
+        return entityManager.find(Item.class, id);
+    }
+
+    @Override
     public List<Item> getItemsByCategory(String category) {
         Query query = entityManager.createQuery("from Item where category = :category");
         query.setParameter("category", category);
