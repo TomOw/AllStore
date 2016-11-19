@@ -43,16 +43,13 @@ public class TestController {
 
     @RequestMapping(value = "/store")
     public Store testStore() {
-        Store store = new Store("store", 3.5, 45, 45);
-        StoreAddress address = new StoreAddress("BR", "RIO", "SUPER", "32", "00333");
-        store.setStoreAddress(address);
-        address.setStore(store);
-        Item item = new Item("komputr", 5500, "category", "super cos", "photo", 500, 6.0);
-        Item item2 = new Item("laptok", 323, "category", "sztos cos", "photo2", 5002, 4.0);
-        store.getItems().add(item);
-        store.getItems().add(item2);
-        item.setStore(store);
-        item2.setStore(store);
+        Store store = new Store();
+        store.setName("Chepo");
+        store.setCountry("PL");
+        store.setCity("Krakow");
+        store.setStreet("Mickiewicza");
+        store.setNumber("14");
+        store.setPostalCode("56570");
         storeRepository.addStore(store);
         return store;
     }

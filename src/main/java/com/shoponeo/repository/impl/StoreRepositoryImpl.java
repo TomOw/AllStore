@@ -3,15 +3,12 @@ package com.shoponeo.repository.impl;
 import com.shoponeo.model.shop.Item;
 import com.shoponeo.model.shop.Order;
 import com.shoponeo.model.shop.Store;
-import com.shoponeo.model.shop.StoreAddress;
 import com.shoponeo.repository.StoreRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.From;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -27,14 +24,6 @@ public class StoreRepositoryImpl implements StoreRepository {
 
     @Override
     public Store addStore(Store store) {
-        entityManager.persist(store);
-        return store;
-    }
-
-    @Override
-    public Store addStore(Store store, StoreAddress storeAddress) {
-        store.setStoreAddress(storeAddress);
-        storeAddress.setStore(store);
         entityManager.persist(store);
         return store;
     }

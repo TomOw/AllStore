@@ -28,8 +28,21 @@ public class Store {
     @Column(name = "NO_OF_RATES")
     private int noOfRates;
 
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "store", cascade = CascadeType.ALL)
-    private StoreAddress storeAddress;
+    @Column(name = "COUNTRY")
+    private String country;
+
+    @Column(name = "CITY")
+    private String city;
+
+    @Column(name = "STREET")
+    private String street;
+
+    @Column(name = "NUMBER")
+    private String number;
+
+    @Column(name = "POSTAL_CODE")
+    private String postalCode;
+
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "store", cascade = CascadeType.ALL)
     private Set<Item> items;
@@ -48,21 +61,11 @@ public class Store {
         this.items = new HashSet<>();
     }
 
-    public Store(String name, double rating, int noOfOrdersMade, int noOfRates, StoreAddress storeAddress) {
+    public Store(String name, double rating, int noOfOrdersMade, int noOfRates, Set<Item> items) {
         this.name = name;
         this.rating = rating;
         this.noOfOrdersMade = noOfOrdersMade;
         this.noOfRates = noOfRates;
-        this.storeAddress = storeAddress;
-        this.items = new HashSet<>();
-    }
-
-    public Store(String name, double rating, int noOfOrdersMade, int noOfRates, StoreAddress storeAddress, Set<Item> items) {
-        this.name = name;
-        this.rating = rating;
-        this.noOfOrdersMade = noOfOrdersMade;
-        this.noOfRates = noOfRates;
-        this.storeAddress = storeAddress;
         this.items = items;
     }
 
@@ -106,14 +109,6 @@ public class Store {
         this.noOfRates = noOfRates;
     }
 
-    public StoreAddress getStoreAddress() {
-        return storeAddress;
-    }
-
-    public void setStoreAddress(StoreAddress storeAddress) {
-        this.storeAddress = storeAddress;
-    }
-
     public Set<Item> getItems() {
         return items;
     }
@@ -140,6 +135,46 @@ public class Store {
         }
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
     public Set<Order> getOrders() {
         return orders;
     }
@@ -152,7 +187,6 @@ public class Store {
                 ", rating=" + rating +
                 ", noOfOrdersMade=" + noOfOrdersMade +
                 ", noOfRates=" + noOfRates +
-                ", storeAddress=" + storeAddress +
                 ", items=" + items +
                 '}';
     }
