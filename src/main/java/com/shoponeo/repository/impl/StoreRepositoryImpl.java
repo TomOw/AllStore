@@ -70,4 +70,12 @@ public class StoreRepositoryImpl implements StoreRepository {
         List<String> resultList = query.getResultList();
         return resultList;
     }
+
+    @Override
+    public List<Store> getStoresByItemName(String name) {
+        Query query = entityManager.createQuery("select store.name from Store store inner join store.items as item where item.name = :name");
+        query.setParameter("name", name);
+        List<Store> list = query.getResultList();
+        return query.getResultList();
+    }
 }

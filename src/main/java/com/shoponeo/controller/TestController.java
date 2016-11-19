@@ -153,4 +153,9 @@ public class TestController {
     public List<Integer> itemStores() {
         return itemRepository.getStoreIdsByItemId("iPhone 7 Plus");
     }
+
+    @RequestMapping(value = "/itemNameStores")
+    public List<Store> itemNameStores() {
+        return storeRepository.getStoresByItemName("iPhone 7 Plus");
+    }
 }
