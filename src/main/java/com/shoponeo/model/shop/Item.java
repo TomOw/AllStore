@@ -37,6 +37,9 @@ public class Item {
     @Column(name = "AVG_RATING")
     private double avgRating;
 
+    @Column(name = "VIEWS")
+    private int views;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "STORE_ID", nullable = false)
     private Store store;
@@ -169,6 +172,14 @@ public class Item {
         } else {
             this.orders.add(order);
         }
+    }
+
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
     }
 
     @Override

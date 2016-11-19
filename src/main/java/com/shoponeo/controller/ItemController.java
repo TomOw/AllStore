@@ -18,6 +18,7 @@ public class ItemController {
 
     @RequestMapping(value = "/add/{store}", method = RequestMethod.POST)
     public Item addItem(@RequestBody Item item, @PathVariable("store") String storeName) {
+        System.out.println(item);
         storeRepository.addItemToStore(storeRepository.getStoreByName(storeName).get(0), item);
         return item;
     }

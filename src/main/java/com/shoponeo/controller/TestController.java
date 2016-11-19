@@ -121,4 +121,10 @@ public class TestController {
     public List<String> strings() {
         return storeRepository.getAllStoreNames();
     }
+
+    @RequestMapping(value = "/viewsUp/{itemId}")
+    public int viewsUp(@PathVariable("itemId") int itemId) {
+        Item item = itemRepository.getItemById(itemId);
+        return itemRepository.increaseViews(item);
+    }
 }

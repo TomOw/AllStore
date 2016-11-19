@@ -19,4 +19,5 @@ public interface ItemRepository {
 
     List<Item> getItemsByCategory(String category);
 
+    int increaseViews(Item item);
 }

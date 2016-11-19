@@ -40,4 +40,13 @@ public class ItemRepositoryImpl implements ItemRepository {
         List<Item> items = query.getResultList();
         return items;
     }
+
+    @Override
+    public int increaseViews(Item item) {
+        int views = item.getViews();
+        views += 1;
+        item.setViews(views);
+        entityManager.merge(item);
+        return views;
+    }
 }
