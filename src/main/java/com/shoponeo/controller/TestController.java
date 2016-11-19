@@ -158,4 +158,10 @@ public class TestController {
     public List<Store> itemNameStores() {
         return storeRepository.getStoresByItemName("iPhone 7 Plus");
     }
+
+    @RequestMapping(value = "/itemStoreModel")
+    public List<StoreItemPrice> storeItemPrices() {
+        List<StoreItemPrice> storeItemPrice = storeRepository.getStoreItemPrice("iPhone 7 Plus");
+        return storeItemPrice;
+    }
 }

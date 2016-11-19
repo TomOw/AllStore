@@ -3,6 +3,7 @@ package com.shoponeo.repository;
 import com.shoponeo.model.shop.Item;
 import com.shoponeo.model.shop.Order;
 import com.shoponeo.model.shop.Store;
+import com.shoponeo.model.shop.StoreItemPrice;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -28,5 +29,7 @@ public interface StoreRepository {
     List<String> getAllStoreNames();
 
     List<Store> getStoresByItemName(String name);
+
+    List<StoreItemPrice> getStoreItemPrice(String name);
 
 }

@@ -3,6 +3,7 @@ package com.shoponeo.repository.impl;
 import com.shoponeo.model.shop.Item;
 import com.shoponeo.model.shop.Order;
 import com.shoponeo.model.shop.Store;
+import com.shoponeo.model.shop.StoreItemPrice;
 import com.shoponeo.repository.StoreRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +11,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by owczatom on 2016-10-21.
@@ -77,5 +80,18 @@ public class StoreRepositoryImpl implements StoreRepository {
         query.setParameter("name", name);
         List<Store> list = query.getResultList();
         return query.getResultList();
+    }
+
+    @Override
+    public List<StoreItemPrice> getStoreItemPrice(String name) {
+        Query query = entityManager.createQuery("select store.name, store.id, item.id, item.price from Store store inner join store.items as item where item.name = :name");
+        query.setParameter("name", name);
+        List<Object[]> list = query.getResultList();
+        List<StoreItemPrice> result = new ArrayList<>();
+        for (Object[] object :
+                list) {
+            result.add(new StoreItemPrice((String) object[0], (Integer) object[1], (Integer) object[2], (Double) object[3]));
+        }
+        return result;
     }
 }
