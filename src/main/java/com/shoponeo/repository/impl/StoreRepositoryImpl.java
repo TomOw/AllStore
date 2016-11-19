@@ -84,14 +84,9 @@ public class StoreRepositoryImpl implements StoreRepository {
 
     @Override
     public List<StoreItemPrice> getStoreItemPrice(String name) {
-        Query query = entityManager.createQuery("select store.name, store.id, item.id, item.price from Store store inner join store.items as item where item.name = :name");
+        Query query = entityManager.createQuery("select new com.shoponeo.model.shop.StoreItemPrice(store.name, store.id, item.id, item.price) from Store store inner join store.items as item where item.name = :name");
         query.setParameter("name", name);
-        List<Object[]> list = query.getResultList();
-        List<StoreItemPrice> result = new ArrayList<>();
-        for (Object[] object :
-                list) {
-            result.add(new StoreItemPrice((String) object[0], (Integer) object[1], (Integer) object[2], (Double) object[3]));
-        }
-        return result;
+        return query.getResultList();
     }
+
 }
