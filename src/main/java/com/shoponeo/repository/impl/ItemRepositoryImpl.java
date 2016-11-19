@@ -49,4 +49,12 @@ public class ItemRepositoryImpl implements ItemRepository {
         entityManager.merge(item);
         return views;
     }
+
+    @Override
+    public List<Integer> getStoreIdsByItemId(String name) {
+        Query query = entityManager.createQuery("select item.store.id from Item item where item.name = :itemName");
+        query.setParameter("itemName", name);
+        List<Integer> list = query.getResultList();
+        return list;
+    }
 }

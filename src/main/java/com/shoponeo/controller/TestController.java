@@ -44,13 +44,37 @@ public class TestController {
     @RequestMapping(value = "/store")
     public Store testStore() {
         Store store = new Store();
-        store.setName("Chepo");
-        store.setCountry("PL");
-        store.setCity("Krakow");
-        store.setStreet("Mickiewicza");
-        store.setNumber("14");
-        store.setPostalCode("56570");
+        store.setName("Satcom");
+        store.setCountry("USA");
+        store.setCity("New York");
+        store.setStreet("5th");
+        store.setNumber("43");
+        store.setPostalCode("13414");
         storeRepository.addStore(store);
+        Store store1 = new Store();
+        store1.setName("Microsoft Store");
+        store1.setCountry("USA");
+        store1.setCity("San Francisco");
+        store1.setStreet("Elizabeth");
+        store1.setNumber("100");
+        store1.setPostalCode("65984");
+        storeRepository.addStore(store1);
+        Store store2 = new Store();
+        store2.setName("ETD");
+        store2.setCountry("PL");
+        store2.setCity("Warszawa");
+        store2.setStreet("Srebrna");
+        store2.setNumber("15");
+        store2.setPostalCode("00323");
+        storeRepository.addStore(store2);
+        Store store3 = new Store();
+        store3.setName("E-MALL");
+        store3.setCountry("PL");
+        store3.setCity("Poznan");
+        store3.setStreet("Ludwika");
+        store3.setNumber("41");
+        store3.setPostalCode("50580");
+        storeRepository.addStore(store3);
         return store;
     }
 
@@ -123,5 +147,10 @@ public class TestController {
     public int viewsUp(@PathVariable("itemId") int itemId) {
         Item item = itemRepository.getItemById(itemId);
         return itemRepository.increaseViews(item);
+    }
+
+    @RequestMapping(value = "/itemStores")
+    public List<Integer> itemStores() {
+        return itemRepository.getStoreIdsByItemId("iPhone 7 Plus");
     }
 }
