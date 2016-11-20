@@ -60,15 +60,11 @@ public class DatabaseConfig {
 
         // Hibernate properties
         Properties additionalProperties = new Properties();
-        additionalProperties.put(
-                "hibernate.dialect",
-                env.getProperty("hibernate.dialect"));
-        additionalProperties.put(
-                "hibernate.show_sql",
-                env.getProperty("hibernate.show_sql"));
-        additionalProperties.put(
-                "hibernate.hbm2ddl.auto",
-                env.getProperty("hibernate.hbm2ddl.auto"));
+        additionalProperties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+        additionalProperties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        additionalProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        additionalProperties.put("hibernate.connection.useUnicode", env.getProperty("hibernate.connection.useUnicode"));
+        additionalProperties.put("hibernate.connection.characterEncoding", env.getProperty("hibernate.connection.characterEncoding"));
         entityManagerFactory.setJpaProperties(additionalProperties);
 
         return entityManagerFactory;
