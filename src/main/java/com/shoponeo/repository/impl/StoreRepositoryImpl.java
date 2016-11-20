@@ -1,9 +1,6 @@
 package com.shoponeo.repository.impl;
 
-import com.shoponeo.model.shop.Item;
-import com.shoponeo.model.shop.Order;
-import com.shoponeo.model.shop.Store;
-import com.shoponeo.model.shop.StoreItemPrice;
+import com.shoponeo.model.shop.*;
 import com.shoponeo.repository.StoreRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,10 +11,12 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.jar.Attributes;
 
 /**
  * Created by owczatom on 2016-10-21.
  */
+@SuppressWarnings("JpaQlInspection")
 @Repository
 @Transactional
 public class StoreRepositoryImpl implements StoreRepository {
@@ -83,10 +82,16 @@ public class StoreRepositoryImpl implements StoreRepository {
     }
 
     @Override
-    public List<StoreItemPrice> getStoreItemPrice(String name) {
-        Query query = entityManager.createQuery("select new com.shoponeo.model.shop.StoreItemPrice(store.name, store.id, item.id, item.price) from Store store inner join store.items as item where item.name = :name");
+    public List<Offer> getOffers(String name) {
+        Query query = entityManager.createQuery("select new com.shoponeo.model.shop.Offer(store.name, store.id, store.country, store.city, store.street, store.number, store.postalCode, item.id, item.price) from Store store inner join store.items as item where item.name = :name");
         query.setParameter("name", name);
         return query.getResultList();
     }
 
+    @Override
+    public Address getStoreAddressByStoreName(String name) {
+        Query query = entityManager.createQuery("select new com.shoponeo.model.shop.Address(store.country, store.city, store.street, store.number, store.postalCode) from Store store where store.name = :name");
+        query.setParameter("name", name);
+        return (Address) query.getResultList().get(0);
+    }
 }

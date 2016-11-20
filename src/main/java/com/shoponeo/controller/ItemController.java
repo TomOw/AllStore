@@ -1,7 +1,7 @@
 package com.shoponeo.controller;
 
 import com.shoponeo.model.shop.Item;
-import com.shoponeo.model.shop.StoreItemPrice;
+import com.shoponeo.model.shop.Offer;
 import com.shoponeo.repository.ItemRepository;
 import com.shoponeo.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +39,15 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/cheapest/{itemName}")
-    public StoreItemPrice getCheapest(@PathVariable("itemName") String name) {
-        List<StoreItemPrice> list = storeRepository.getStoreItemPrice(name);
+    public Offer getCheapest(@PathVariable("itemName") String name) {
+        List<Offer> list = storeRepository.getOffers(name);
         Collections.sort(list);
         return list.get(0);
     }
+
+    @RequestMapping(value = "/offers/{itemName}")
+    public List<Offer> getOffers(@PathVariable("itemName") String name) {
+        return storeRepository.getOffers(name);
+    }
+
 }

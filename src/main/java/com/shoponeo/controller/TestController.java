@@ -155,8 +155,8 @@ public class TestController {
     }
 
     @RequestMapping(value = "/itemStoreModel")
-    public List<StoreItemPrice> storeItemPrices() {
-        List<StoreItemPrice> storeItemPrice = storeRepository.getStoreItemPrice("iPhone 7 Plus");
+    public List<Offer> storeItemPrices() {
+        List<Offer> storeItemPrice = storeRepository.getOffers("iPhone 7 Plus");
         return storeItemPrice;
     }
 }
