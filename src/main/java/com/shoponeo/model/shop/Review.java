@@ -17,6 +17,9 @@ public class Review {
     @Column(name = "DESCRIPTION", length = 10000)
     private String description;
 
+    @Column(name = "RATING")
+    private int rating;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ITEM_ID")
     private Item item;
@@ -51,6 +54,14 @@ public class Review {
 
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     @Override
