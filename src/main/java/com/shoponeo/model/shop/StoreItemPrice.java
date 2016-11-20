@@ -3,7 +3,7 @@ package com.shoponeo.model.shop;
 /**
  * Created by Tomasz on 19.11.2016.
  */
-public class StoreItemPrice {
+public class StoreItemPrice implements Comparable {
 
     private String storeName;
 
@@ -63,5 +63,10 @@ public class StoreItemPrice {
                 ", itemId=" + itemId +
                 ", itemPrice=" + itemPrice +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return new Double(this.itemPrice).compareTo(((StoreItemPrice) o).itemPrice);
     }
 }

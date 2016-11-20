@@ -94,11 +94,6 @@ public class TestController {
         return item;
     }
 
-    @RequestMapping(value = "/item/{name}")
-    public List<Item> getItems(@PathVariable("name") String name) {
-        return itemRepository.getItemsByName(name);
-    }
-
     @RequestMapping(value = "/category/{category}")
     public List<Item> getItemsByCategory(@PathVariable("category") String category) {
         return itemRepository.getItemsByCategory(category);
