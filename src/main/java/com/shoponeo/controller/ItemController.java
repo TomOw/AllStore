@@ -37,7 +37,7 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/{itemId}")
-    public Item getItemById2222(@PathVariable("itemId") int id) {
+    public Item getItemById(@PathVariable("itemId") int id) {
         Item itemById = itemRepository.getItemById(id);
         System.out.println(itemById);
         return itemById;

@@ -36,6 +36,12 @@ public class Review {
         this.item = item;
     }
 
+    public Review(String description, int rating, Item item) {
+        this.description = description;
+        this.rating = rating;
+        this.item = item;
+    }
+
     public int getId() {
         return id;
     }

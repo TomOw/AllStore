@@ -159,4 +159,9 @@ public class TestController {
         List<Offer> storeItemPrice = storeRepository.getOffers("iPhone 7 Plus");
         return storeItemPrice;
     }
+
+    @RequestMapping(value = "/reveTeste")
+    public Review reviewTemplate() {
+        return new Review("Review description", 4, null);
+    }
 }
