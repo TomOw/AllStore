@@ -17,4 +17,6 @@ public interface ReviewRepository {
     Review addReviewToItem(Item item, Review review);
 
     List<Review> getReviewsByItemName(String name);
+
+    long getNoOfReviewsByItemName(String name);
 }

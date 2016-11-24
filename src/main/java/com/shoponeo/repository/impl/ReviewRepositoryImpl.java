@@ -37,4 +37,12 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         query.setParameter("name", name);
         return query.getResultList();
     }
+
+    @Override
+    public long getNoOfReviewsByItemName(String name) {
+        Query query = entityManager.createQuery("select count(review) from Review review inner join review.item as item where item.name = :name");
+        query.setParameter("name", name);
+        return (long) query.getResultList().get(0);
+
+    }
 }

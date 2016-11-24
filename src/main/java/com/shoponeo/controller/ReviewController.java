@@ -33,4 +33,9 @@ public class ReviewController {
     public List<Review> getReviewsByItemName(@PathVariable("itemName") String name) {
         return reviewRepository.getReviewsByItemName(name);
     }
+
+    @RequestMapping(value = "/no/{itemName}")
+    public long getNoOfReviewsByItemName(@PathVariable("itemName") String name) {
+        return reviewRepository.getNoOfReviewsByItemName(name);
+    }
 }
