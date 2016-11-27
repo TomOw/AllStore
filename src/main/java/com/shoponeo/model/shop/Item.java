@@ -40,6 +40,9 @@ public class Item {
     @Column(name = "VIEWS")
     private int views;
 
+    @Column(name = "NO_OF_REVIEWS")
+    private int noOfReviews;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "STORE_ID", nullable = false)
     private Store store;
@@ -180,6 +183,14 @@ public class Item {
 
     public void setViews(int views) {
         this.views = views;
+    }
+
+    public int getNoOfReviews() {
+        return noOfReviews;
+    }
+
+    public void setNoOfReviews(int noOfReviews) {
+        this.noOfReviews = noOfReviews;
     }
 
     @Override

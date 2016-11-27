@@ -27,6 +27,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     public Review addReviewToItem(Item item, Review review) {
         item.addReview(review);
         review.setItem(item);
+        item.setNoOfReviews(item.getNoOfReviews() + 1);
         entityManager.merge(item);
         return review;
     }
