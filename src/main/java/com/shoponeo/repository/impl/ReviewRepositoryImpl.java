@@ -2,8 +2,10 @@ package com.shoponeo.repository.impl;
 
 import com.shoponeo.model.shop.Item;
 import com.shoponeo.model.shop.Review;
+import com.shoponeo.repository.ItemRepository;
 import com.shoponeo.repository.ReviewRepository;
 import org.hibernate.sql.Select;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -24,12 +26,20 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     EntityManager entityManager;
 
     @Override
-    public Review addReviewToItem(Item item, Review review) {
+    public Item addReviewToItem(Item item, Review review, List<Item> itemList) {
+        for (Item item1 :
+                itemList) {
+            int noOfReviews = item1.getNoOfReviews();
+            double avgRating = (item1.getAvgRating() * noOfReviews + review.getRating()) / (noOfReviews + 1);
+            avgRating = Math.round(avgRating * 100.0) / 100.0;
+            item1.setAvgRating(avgRating);
+            item1.setNoOfReviews(item1.getNoOfReviews() + 1);
+            entityManager.merge(item1);
+        }
         item.addReview(review);
         review.setItem(item);
-        item.setNoOfReviews(item.getNoOfReviews() + 1);
         entityManager.merge(item);
-        return review;
+        return item;
     }
 
     @Override

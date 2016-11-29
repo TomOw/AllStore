@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional
 public interface ReviewRepository {
 
-    Review addReviewToItem(Item item, Review review);
+    Item addReviewToItem(Item item, Review review, List<Item> itemList);
 
     List<Review> getReviewsByItemName(String name);
 

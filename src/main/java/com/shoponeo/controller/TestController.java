@@ -99,14 +99,6 @@ public class TestController {
         return itemRepository.getItemsByCategory(category);
     }
 
-    @RequestMapping(value = "/rev")
-    public Item review() {
-        //Item item = new Item("komputr", 5500, "category", "super cos", "photo", 500, 6.0);
-        Item item = itemRepository.getItemsByName("laptok").get(0);
-        Review review = new Review("desc");
-        reviewRepository.addReviewToItem(item, review);
-        return item;
-    }
 
     @RequestMapping(value = "/or")
     public Order order() {
