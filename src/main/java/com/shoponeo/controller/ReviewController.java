@@ -23,11 +23,11 @@ public class ReviewController {
     ReviewRepository reviewRepository;
 
     @RequestMapping(value = "/add/{itemId}", method = RequestMethod.POST)
-    public Review addReview(@RequestBody Review review, @PathVariable("itemId") int itemId) {
+    public Item addReview(@RequestBody Review review, @PathVariable("itemId") int itemId) {
         Item item = itemRepository.getItemById(itemId);
         List<Item> itemList = itemRepository.getItemsByName(item.getName());
         reviewRepository.addReviewToItem(item, review, itemList);
-        return review;
+        return item;
     }
 
     @RequestMapping(value = "/{itemName}")
