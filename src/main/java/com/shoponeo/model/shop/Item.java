@@ -43,7 +43,7 @@ public class Item {
     @Column(name = "NO_OF_REVIEWS")
     private int noOfReviews;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "STORE_ID", nullable = false)
     private Store store;
 
@@ -191,6 +191,10 @@ public class Item {
 
     public void setNoOfReviews(int noOfReviews) {
         this.noOfReviews = noOfReviews;
+    }
+
+    public String getStoreName() {
+        return this.store.getName();
     }
 
     @Override

@@ -32,8 +32,15 @@ public class ItemController {
     @RequestMapping(value = "/add/{store}", method = RequestMethod.POST)
     public Item addItem(@RequestBody Item item, @PathVariable("store") String storeName) {
         System.out.println(item);
+        itemRepository.randomizePrice(item);
+        itemRepository.randomizeNoInStock(item);
         storeRepository.addItemToStore(storeRepository.getStoreByName(storeName).get(0), item);
         return item;
+    }
+
+    @RequestMapping(value = "/add/list", method = RequestMethod.POST)
+    public List<Item> addItemList(@RequestBody List<Item> itemList) {
+        return storeRepository.addItemListToStore(itemList);
     }
 
     @RequestMapping(value = "/{itemId}")
@@ -43,7 +50,7 @@ public class ItemController {
         return itemById;
     }
 
-    @RequestMapping(value = "/{itemName}")
+    @RequestMapping(value = "/name/{itemName}")
     public List<Item> getItemsByName(@PathVariable("itemName") String name) {
         return itemRepository.getItemsByName(name);
     }

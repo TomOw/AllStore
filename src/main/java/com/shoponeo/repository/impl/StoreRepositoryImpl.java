@@ -52,6 +52,16 @@ public class StoreRepositoryImpl implements StoreRepository {
     }
 
     @Override
+    public List<Item> addItemListToStore(List<Item> itemList) {
+        for (Item item :
+                itemList) {
+            Store store = getStoreByName(item.getStoreName()).get(0);
+            addItemToStore(store, item);
+        }
+        return itemList;
+    }
+
+    @Override
     public Order addOrder(Store store, Order order, List<Item> items) {
         for (Item item :
                 items) {

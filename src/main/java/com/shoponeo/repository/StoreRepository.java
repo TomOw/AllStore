@@ -21,6 +21,8 @@ public interface StoreRepository {
 
     Item addItemToStore(Store store, Item item);
 
+    List<Item> addItemListToStore(List<Item> itemList);
+
     Order addOrder(Store store, Order order, List<Item> items);
 
     List<String> getAllStoreNames();

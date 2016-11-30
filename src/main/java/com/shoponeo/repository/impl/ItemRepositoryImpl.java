@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.security.SecureRandom;
 import java.util.List;
 
 /**
@@ -22,8 +23,8 @@ public class ItemRepositoryImpl implements ItemRepository {
 
     @Override
     public List<Item> getItemsByName(String name) {
-        Query query = entityManager.createQuery("from Item where name = :name");
-        query.setParameter("name", name);
+        Query query = entityManager.createQuery("select item from Item item where item.name like :name order by item.price asc");
+        query.setParameter("name", name + "%");
         List<Item> items = query.getResultList();
         return items;
     }
@@ -56,5 +57,31 @@ public class ItemRepositoryImpl implements ItemRepository {
         query.setParameter("itemName", name);
         List<Integer> list = query.getResultList();
         return list;
+    }
+
+    @Override
+    public Item randomizePrice(Item item) {
+        SecureRandom secureRandom = new SecureRandom();
+        double x = item.getPrice();
+        double diff = secureRandom.nextDouble() * x * 20 / 100;
+        if (secureRandom.nextInt(2) == 1) {
+            item.setPrice(Math.round((x + diff) * 10.0) / 10.0);
+        } else {
+            item.setPrice(Math.round((x - diff) * 10.0) / 10.0);
+        }
+        return item;
+    }
+
+    @Override
+    public Item randomizeNoInStock(Item item) {
+        SecureRandom secureRandom = new SecureRandom();
+        int x = item.getNoInStock();
+        int diff = secureRandom.nextInt(x * 2 / 3);
+        if (secureRandom.nextInt(2) == 1) {
+            item.setNoInStock(Math.round(x + diff));
+        } else {
+            item.setNoInStock(Math.round(x - diff));
+        }
+        return item;
     }
 }

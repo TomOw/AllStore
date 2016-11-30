@@ -22,4 +22,8 @@ public interface ItemRepository {
     int increaseViews(Item item);
 
     List<Integer> getStoreIdsByItemId(String name);
+
+    Item randomizePrice(Item item);
+
+    Item randomizeNoInStock(Item item);
 }
