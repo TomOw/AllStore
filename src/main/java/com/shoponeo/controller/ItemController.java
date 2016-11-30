@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Tomasz on 16.11.2016.
@@ -51,8 +53,10 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/name/{itemName}")
-    public List<Item> getItemsByName(@PathVariable("itemName") String name) {
-        return itemRepository.getItemsByName(name);
+    public Set<Item> getItemsByName(@PathVariable("itemName") String name) {
+        List<Item> itemsByName = itemRepository.getItemsByName(name);
+        Set<Item> itemSet = new HashSet<>(itemsByName);
+        return itemSet;
     }
 
     @RequestMapping(value = "/cheapest/{itemName}")
