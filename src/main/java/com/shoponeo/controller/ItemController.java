@@ -45,14 +45,14 @@ public class ItemController {
         return storeRepository.addItemListToStore(itemList);
     }
 
-    @RequestMapping(value = "/{itemId}")
+    @RequestMapping(value = "byId/{itemId}")
     public Item getItemById(@PathVariable("itemId") int id) {
         Item itemById = itemRepository.getItemById(id);
         System.out.println(itemById);
         return itemById;
     }
 
-    @RequestMapping(value = "/name/{itemName}")
+    @RequestMapping(value = "/byName/{itemName}")
     public Set<Item> getItemsByName(@PathVariable("itemName") String name) {
         List<Item> itemsByName = itemRepository.getItemsByName(name);
         Set<Item> itemSet = new HashSet<>(itemsByName);
