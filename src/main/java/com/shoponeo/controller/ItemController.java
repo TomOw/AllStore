@@ -59,6 +59,13 @@ public class ItemController {
         return itemSet;
     }
 
+    @RequestMapping(value = "/byCategory/{categoryName}")
+    public Set<Item> getItemsByCategory(@PathVariable("categoryName") String categoryName) {
+        List<Item> itemList = itemRepository.getItemsByCategory(categoryName);
+        Set<Item> itemSet = new HashSet<>(itemList);
+        return itemSet;
+    }
+
     @RequestMapping(value = "/cheapest/{itemName}")
     public Offer getCheapest(@PathVariable("itemName") String name) {
         List<Offer> list = storeRepository.getOffers(name);
