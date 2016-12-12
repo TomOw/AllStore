@@ -10,7 +10,7 @@ Copy main.html to `src/main/resources/templates`.
 Copy the rest of the files to `src/main/resources/static`.
 #How to run
 
-In order to run REST backend alone:   
+In order to run the app:   
 Clone the repository  
 Add file application.properties in src/main/resources
 And specify the Database connection properties.  
