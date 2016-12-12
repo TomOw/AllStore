@@ -1,10 +1,14 @@
 package com.shoponeo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.shoponeo.model.shop.Order;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,12 +22,18 @@ public class User implements UserDetails {
     @Column(name = "USERNAME")
     private String username;
 
+    @JsonIgnore
     @Column(name = "PASSWORD")
     private String password;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "OWNER", referencedColumnName = "USERNAME")
     private Set<Role> authorities;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Order> orders;
 
     public User() {
     }
@@ -59,6 +69,20 @@ public class User implements UserDetails {
 
     public void setAuthorities(Set<Role> authorities) {
         this.authorities = authorities;
+    }
+
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void addOrder(Order order) {
+        if (this.orders == null) {
+            this.orders = new ArrayList<>();
+            this.orders.add(order);
+        } else {
+            this.orders.add(order);
+        }
     }
 
     @Override

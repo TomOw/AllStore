@@ -1,6 +1,9 @@
 package com.shoponeo.model.shop;
 
+import com.shoponeo.model.User;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +23,9 @@ public class Order {
     @Column(name = "PRICE")
     private double price;
 
+    @Column(name = "MADE_DATE")
+    private Date date;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "ZAMOW_ITEM",
             joinColumns = {@JoinColumn(name = "ZAMOW_ID", nullable = false, updatable = false)},
@@ -29,6 +35,10 @@ public class Order {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "STORE_ID")
     private Store store;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USERNAME")
+    private User user;
 
     public Order() {
     }
@@ -71,12 +81,37 @@ public class Order {
         this.store = store;
     }
 
-    public void calculatePrice() {
+    public Date getDate() {
+        return date;
+    }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void addItem(Item item) {
+        if (this.items == null) {
+            this.items = new HashSet<>();
+            this.items.add(item);
+        }
+        this.items.add(item);
+    }
+
+    public void calculatePrice() {
+        double sum = 0;
         for (Item item :
                 this.items) {
-
+            sum += item.getPrice();
         }
+        this.price = sum;
     }
 
     @Override

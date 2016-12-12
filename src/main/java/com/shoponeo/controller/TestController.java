@@ -1,5 +1,6 @@
 package com.shoponeo.controller;
 
+import com.shoponeo.model.User;
 import com.shoponeo.model.shop.*;
 import com.shoponeo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,14 +33,12 @@ public class TestController {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @RequestMapping(value = "/test")
     public String test() {
         return "it work so much";
-    }
-
-    @RequestMapping(value = "/login")
-    public String login() {
-        return "login page is here";
     }
 
     @RequestMapping(value = "/store")
@@ -112,6 +112,25 @@ public class TestController {
         order.getItems().add(item);
         order.calculatePrice();
         storeRepository.addOrder(storeRepository.getStoreByName("eigth").get(0), order, list);
+        return order;
+    }
+
+    @RequestMapping(value = "/newOrder")
+    public Order testOrder() {
+        Order order = new Order();
+        order.setDate(new Date());
+        User user = userRepository.get("admin");
+        List<Item> list = new ArrayList<>();
+        Item itemById = itemRepository.getItemById(195);
+        list.add(itemById);
+        //itemById.addOrder(order);
+        Item itemById1 = itemRepository.getItemById(42);
+        list.add(itemById1);
+        //itemById1.addOrder(order);
+        //order.calculatePrice();
+        order.setUser(user);
+        user.addOrder(order);
+        storeRepository.addOrder(storeRepository.getStoreByName("ETD").get(0), order, list);
         return order;
     }
 
