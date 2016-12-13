@@ -49,10 +49,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/test").permitAll()
                 .and()
-                .formLogin().loginPage("/login")
+                .formLogin().loginPage("/#/login")
                 .defaultSuccessUrl("/")
                 .and()
-                .formLogin().failureUrl("/loginFailure").permitAll()
+                .formLogin().failureUrl("/#/login").permitAll()
                 .and()
                 .httpBasic();
 
