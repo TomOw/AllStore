@@ -7,6 +7,7 @@ import com.shoponeo.repository.ItemRepository;
 import com.shoponeo.repository.ReviewRepository;
 import com.shoponeo.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -59,6 +60,7 @@ public class ItemController {
         return itemSet;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/byCategory/{categoryName}")
     public Set<Item> getItemsByCategory(@PathVariable("categoryName") String categoryName) {
         List<Item> itemList = itemRepository.getItemsByCategory(categoryName);

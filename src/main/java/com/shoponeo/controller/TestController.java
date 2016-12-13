@@ -4,10 +4,12 @@ import com.shoponeo.model.User;
 import com.shoponeo.model.shop.*;
 import com.shoponeo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -174,5 +176,11 @@ public class TestController {
     @RequestMapping(value = "/reveTeste")
     public Review reviewTemplate() {
         return new Review("Review description", 4, null);
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/auth")
+    public Principal getPrincipal(Principal principal) {
+        return principal;
     }
 }
