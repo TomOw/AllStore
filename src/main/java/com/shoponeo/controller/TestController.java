@@ -18,6 +18,7 @@ import java.util.List;
  * Created by Tomasz on 20.10.2016.
  */
 @RestController
+@RequestMapping(value = "/test")
 public class TestController {
 
     @Autowired
