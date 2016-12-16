@@ -13,7 +13,7 @@ Copy the rest of the files to `src/main/resources/static`.
 In order to run the app:   
 Clone the repository  
 Add file application.properties in src/main/resources
-And specify the Database connection properties.  
+And specify the Database connection properties. Aplication tested on MySQL database.
 ```db.driver:  
 db.url:  
 db.username:  
