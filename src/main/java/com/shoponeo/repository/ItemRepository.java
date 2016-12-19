@@ -26,4 +26,8 @@ public interface ItemRepository {
     Item randomizePrice(Item item);
 
     Item randomizeNoInStock(Item item);
+
+    void deleteItem(Item item);
+
+    Item editItem(Item item);
 }

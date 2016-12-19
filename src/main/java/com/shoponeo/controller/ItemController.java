@@ -85,4 +85,13 @@ public class ItemController {
         return reviewRepository.getReviewsByItemName(name);
     }
 
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    public void deleteItem(@RequestBody Item item) {
+        itemRepository.deleteItem(item);
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.PUT)
+    public Item editItem(@RequestBody Item item) {
+        return itemRepository.editItem(item);
+    }
 }

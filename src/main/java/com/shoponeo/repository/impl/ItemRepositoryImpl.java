@@ -84,4 +84,15 @@ public class ItemRepositoryImpl implements ItemRepository {
         }
         return item;
     }
+
+    @Override
+    public void deleteItem(Item item) {
+        entityManager.refresh(item);
+    }
+
+    @Override
+    public Item editItem(Item item) {
+        entityManager.merge(item);
+        return item;
+    }
 }
