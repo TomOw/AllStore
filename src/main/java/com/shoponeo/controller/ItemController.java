@@ -21,6 +21,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/item")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class ItemController {
 
     @Autowired
