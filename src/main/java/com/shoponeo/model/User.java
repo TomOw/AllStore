@@ -26,7 +26,6 @@ public class User implements UserDetails {
     @Column(name = "PASSWORD")
     private String password;
 
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "OWNER", referencedColumnName = "USERNAME")
     private Set<Role> authorities;
