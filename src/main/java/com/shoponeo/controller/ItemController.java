@@ -21,7 +21,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/item")
-@PreAuthorize("hasRole('ROLE_ADMIN')")
+@PreAuthorize("isAuthenticated()")
 public class ItemController {
 
     @Autowired
@@ -61,7 +61,6 @@ public class ItemController {
         return itemSet;
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/byCategory/{categoryName}")
     public Set<Item> getItemsByCategory(@PathVariable("categoryName") String categoryName) {
         List<Item> itemList = itemRepository.getItemsByCategory(categoryName);
