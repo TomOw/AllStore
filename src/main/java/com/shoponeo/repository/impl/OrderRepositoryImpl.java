@@ -2,6 +2,7 @@ package com.shoponeo.repository.impl;
 
 import com.shoponeo.model.shop.Order;
 import com.shoponeo.repository.OrderRepository;
+import org.hibernate.jpa.criteria.FromImplementor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -30,6 +31,13 @@ public class OrderRepositoryImpl implements OrderRepository {
     public List<Order> getOrdersByStoreName(String name) {
         Query query = entityManager.createQuery("from Order where store.name = :name");
         query.setParameter("name", name);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Order> getOrdersByUsername(String username) {
+        Query query = entityManager.createQuery("from Order where user.username = :username");
+        query.setParameter("username", username);
         return query.getResultList();
     }
 }
