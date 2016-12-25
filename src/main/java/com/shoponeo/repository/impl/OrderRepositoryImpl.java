@@ -28,6 +28,15 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
+    public List<Order> addOrderList(List<Order> orders) {
+        for (Order order :
+                orders) {
+            entityManager.persist(order);
+        }
+        return orders;
+    }
+
+    @Override
     public List<Order> getOrdersByStoreName(String name) {
         Query query = entityManager.createQuery("from Order where store.name = :name");
         query.setParameter("name", name);

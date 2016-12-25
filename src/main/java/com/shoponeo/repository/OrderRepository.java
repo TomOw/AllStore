@@ -15,6 +15,8 @@ public interface OrderRepository {
 
     Order addOrder(Order order);
 
+    List<Order> addOrderList(List<Order> orders);
+
     List<Order> getOrdersByStoreName(String name);
 
     List<Order> getOrdersByUsername(String username);
