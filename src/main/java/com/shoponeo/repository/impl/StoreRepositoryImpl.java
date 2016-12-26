@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.jar.Attributes;
@@ -68,8 +69,9 @@ public class StoreRepositoryImpl implements StoreRepository {
             item.addOrder(order);
             item.setStore(store);
             //store.addItem(item);
-            order.addItem(item);
+            //order.addItem(item);
         }
+        order.setItems(new HashSet<>(items));
         store.addOrder(order);
         order.setStore(store);
         entityManager.merge(store);

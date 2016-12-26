@@ -197,6 +197,10 @@ public class Item {
         return this.store.getName();
     }
 
+    public int getStoreId() {
+        return this.store.getId();
+    }
+
     @Override
     public String toString() {
         return "Item{" +

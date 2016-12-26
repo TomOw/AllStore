@@ -26,7 +26,7 @@ public class Order {
     @Column(name = "MADE_DATE")
     private Date date;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "ZAMOW_ITEM",
             joinColumns = {@JoinColumn(name = "ZAMOW_ID", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "ITEM_ID", nullable = false, updatable = false)})
