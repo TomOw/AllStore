@@ -3,9 +3,7 @@ package com.shoponeo.model.shop;
 import com.shoponeo.model.User;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Tomasz on 01.11.2016.
@@ -110,9 +108,17 @@ public class Order {
         this.price = sum;
     }
 
-/*    public String getStoreName() {
-        return this.store.getName();
-    }*/
+    public String getStoreName() {
+        if (this.store == null) {
+            List<Item> items = new ArrayList<>(this.items);
+            if (items.size() > 0) {
+                return items.get(0).getStoreName();
+            }
+        } else {
+            return this.store.getName();
+        }
+        return null;
+    }
 
     @Override
     public String toString() {
