@@ -110,9 +110,9 @@ public class Order {
         this.price = sum;
     }
 
-    public String getStoreName() {
+/*    public String getStoreName() {
         return this.store.getName();
-    }
+    }*/
 
     @Override
     public String toString() {

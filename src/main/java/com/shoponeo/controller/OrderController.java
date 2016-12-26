@@ -4,6 +4,7 @@ import com.shoponeo.model.User;
 import com.shoponeo.model.shop.Cart;
 import com.shoponeo.model.shop.Item;
 import com.shoponeo.model.shop.Order;
+import com.shoponeo.repository.OrderRepository;
 import com.shoponeo.repository.StoreRepository;
 import com.shoponeo.repository.UserRepository;
 import com.shoponeo.service.OrderService;
@@ -33,6 +34,9 @@ public class OrderController {
     @Autowired
     StoreRepository storeRepository;
 
+    @Autowired
+    OrderRepository orderRepository;
+
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
     public Order makeOrderFromCart(@RequestBody Cart cart) {
         Order order = new Order();
@@ -44,5 +48,10 @@ public class OrderController {
         int storeId = items.get(0).getStoreId();
         storeRepository.addOrder(storeRepository.getStoreById(storeId), order, items);
         return order;
+    }
+
+    @RequestMapping(value = "/getqwer")
+    public List<Order> get() {
+        return orderRepository.getOrdersByUsername("user");
     }
 }

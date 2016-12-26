@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService {
     public boolean isStoreNameUniqueInOrders(List<Order> orders, String storeName) {
         for (Order order :
                 orders) {
-            if (order.getStoreName().equals(storeName)) {
+            if ("".equals(storeName)) {
                 return false;
             }
         }
@@ -35,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
     public Order getOrderByStoreName(List<Order> orders, String storeName) {
         for (Order order :
                 orders) {
-            if (order.getStoreName().equals(storeName)) {
+            if ("".equals(storeName)) {
                 return order;
             }
         }
