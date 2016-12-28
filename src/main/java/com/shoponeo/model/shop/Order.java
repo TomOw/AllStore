@@ -120,6 +120,10 @@ public class Order {
         return null;
     }
 
+    public String getUsername() {
+        return this.user.getUsername();
+    }
+
     @Override
     public String toString() {
         return "Order{" +
