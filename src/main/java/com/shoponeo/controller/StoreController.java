@@ -1,6 +1,7 @@
 package com.shoponeo.controller;
 
 import com.shoponeo.model.shop.Address;
+import com.shoponeo.model.shop.Item;
 import com.shoponeo.model.shop.Order;
 import com.shoponeo.model.shop.Store;
 import com.shoponeo.repository.OrderRepository;
@@ -37,6 +38,14 @@ public class StoreController {
 
     @RequestMapping(value = "/orders/{storeName}")
     public List<Order> getOrdersFromStore(@PathVariable("storeName") String name) {
-        return orderRepository.getOrdersByStoreName(name);
+        List<Order> orders = orderRepository.getOrdersByStoreName(name);
+        for (Order order :
+                orders) {
+            for (Item item :
+                    order.getItems()) {
+                item.setReviews(null);
+            }
+        }
+        return orders;
     }
 }
