@@ -33,7 +33,9 @@ public class StoreController {
 
     @RequestMapping(value = "/byName/{storeName}")
     public Store getStoreByName(@PathVariable("storeName") String name) {
-        return storeRepository.getStoreByName(name).get(0);
+        Store store = storeRepository.getStoreByName(name).get(0);
+        store.setOrders(null);
+        return store;
     }
 
     @RequestMapping(value = "/orders/{storeName}")
@@ -44,6 +46,7 @@ public class StoreController {
             for (Item item :
                     order.getItems()) {
                 item.setReviews(null);
+                item.setDescription("");
             }
         }
         return orders;

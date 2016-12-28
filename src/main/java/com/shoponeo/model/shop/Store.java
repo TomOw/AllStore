@@ -175,6 +175,10 @@ public class Store {
         this.postalCode = postalCode;
     }
 
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
     public Set<Order> getOrders() {
         return orders;
     }

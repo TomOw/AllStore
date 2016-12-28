@@ -72,6 +72,7 @@ public class StoreRepositoryImpl implements StoreRepository {
             //order.addItem(item);
         }
         order.setItems(new HashSet<>(items));
+        order.calculatePrice();
         store.addOrder(order);
         order.setStore(store);
         entityManager.merge(store);
