@@ -96,7 +96,7 @@ public class StoreRepositoryImpl implements StoreRepository {
 
     @Override
     public List<Offer> getOffers(String name) {
-        Query query = entityManager.createQuery("select new com.shoponeo.model.shop.Offer(store.name, store.id, store.country, store.city, store.street, store.number, store.postalCode, item.id, item.price) from Store store inner join store.items as item where item.name = :name");
+        Query query = entityManager.createQuery("select new com.shoponeo.model.shop.Offer(store.name, store.id, store.country, store.city, store.street, store.number, store.postalCode, item.id, item.price, item.noInStock) from Store store inner join store.items as item where item.name = :name");
         query.setParameter("name", name);
         return query.getResultList();
     }

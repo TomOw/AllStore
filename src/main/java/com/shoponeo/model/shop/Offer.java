@@ -23,10 +23,12 @@ public class Offer implements Comparable {
 
     private double itemPrice;
 
+    private int noInStock;
+
     public Offer() {
     }
 
-    public Offer(String storeName, int storeId, String storeCountry, String storeCity, String storeStreet, String storeNumber, String storePostalCode, int itemId, double itemPrice) {
+    public Offer(String storeName, int storeId, String storeCountry, String storeCity, String storeStreet, String storeNumber, String storePostalCode, int itemId, double itemPrice, int noInStock) {
         this.storeName = storeName;
         this.storeId = storeId;
         this.storeCountry = storeCountry;
@@ -36,6 +38,7 @@ public class Offer implements Comparable {
         this.storePostalCode = storePostalCode;
         this.itemId = itemId;
         this.itemPrice = itemPrice;
+        this.noInStock = noInStock;
     }
 
     public String getStoreName() {
@@ -108,6 +111,14 @@ public class Offer implements Comparable {
 
     public void setItemPrice(double itemPrice) {
         this.itemPrice = itemPrice;
+    }
+
+    public int getNoInStock() {
+        return noInStock;
+    }
+
+    public void setNoInStock(int noInStock) {
+        this.noInStock = noInStock;
     }
 
     @Override
