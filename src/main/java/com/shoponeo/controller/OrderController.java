@@ -9,10 +9,7 @@ import com.shoponeo.repository.StoreRepository;
 import com.shoponeo.repository.UserRepository;
 import com.shoponeo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -50,8 +47,8 @@ public class OrderController {
         return order;
     }
 
-    @RequestMapping(value = "/getqwer")
-    public List<Order> get() {
-        return orderRepository.getOrdersByUsername("user");
+    @RequestMapping(value = "/get/{username}")
+    public List<Order> getOrdersByUsername(@PathVariable("username") String username) {
+        return orderRepository.getOrdersByUsername(username);
     }
 }
