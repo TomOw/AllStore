@@ -41,6 +41,12 @@ public class ItemController {
         return item;
     }
 
+    @RequestMapping(value = "/addSingle/{store}", method = RequestMethod.POST)
+    public Item addSingleItem(@RequestBody Item item, @PathVariable("store") String storeName) {
+        storeRepository.addItemToStore(storeRepository.getStoreByName(storeName).get(0), item);
+        return item;
+    }
+
     @RequestMapping(value = "/add/list", method = RequestMethod.POST)
     public List<Item> addItemList(@RequestBody List<Item> itemList) {
         return storeRepository.addItemListToStore(itemList);
