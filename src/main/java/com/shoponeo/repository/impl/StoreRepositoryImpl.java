@@ -1,7 +1,9 @@
 package com.shoponeo.repository.impl;
 
 import com.shoponeo.model.shop.*;
+import com.shoponeo.repository.ItemRepository;
 import com.shoponeo.repository.StoreRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -24,6 +26,9 @@ public class StoreRepositoryImpl implements StoreRepository {
 
     @PersistenceContext
     EntityManager entityManager;
+
+    @Autowired
+    ItemRepository itemRepository;
 
     @Override
     public Store addStore(Store store) {
@@ -68,6 +73,8 @@ public class StoreRepositoryImpl implements StoreRepository {
                 items) {
             item.addOrder(order);
             item.setStore(store);
+            item.setNoInStock(item.getNoInStock() - 1);
+            itemRepository.editItem(item);
             //store.addItem(item);
             //order.addItem(item);
         }
