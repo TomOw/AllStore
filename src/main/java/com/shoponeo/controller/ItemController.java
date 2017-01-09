@@ -51,6 +51,7 @@ public class ItemController {
         return storeRepository.addItemListToStore(itemList);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/byId/{itemId}")
     public Item getItemById(@PathVariable("itemId") int id) {
         Item itemById = itemRepository.getItemById(id);
