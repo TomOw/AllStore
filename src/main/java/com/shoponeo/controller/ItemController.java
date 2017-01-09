@@ -7,6 +7,7 @@ import com.shoponeo.repository.ItemRepository;
 import com.shoponeo.repository.ReviewRepository;
 import com.shoponeo.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
