@@ -28,7 +28,7 @@ public class Order {
     @JoinTable(name = "ZAMOW_ITEM",
             joinColumns = {@JoinColumn(name = "ZAMOW_ID", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "ITEM_ID", nullable = false, updatable = false)})
-    private Set<Item> items;
+    private List<Item> items;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "STORE_ID")
@@ -43,10 +43,10 @@ public class Order {
 
     public Order(double price) {
         this.price = price;
-        this.items = new HashSet<>();
+        this.items = new ArrayList<>();
     }
 
-    public Order(double price, Set<Item> items) {
+    public Order(double price, List<Item> items) {
         this.price = price;
         this.items = items;
     }
@@ -67,11 +67,11 @@ public class Order {
         this.price = price;
     }
 
-    public Set<Item> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
-    public void setItems(Set<Item> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 
@@ -93,7 +93,7 @@ public class Order {
 
     public void addItem(Item item) {
         if (this.items == null) {
-            this.items = new HashSet<>();
+            this.items = new ArrayList<>();
             this.items.add(item);
         }
         this.items.add(item);
