@@ -114,4 +114,16 @@ public class StoreRepositoryImpl implements StoreRepository {
         query.setParameter("name", name);
         return (Address) query.getResultList().get(0);
     }
+
+    @Override
+    public Store editStore(Store store) {
+        Query query = entityManager.createQuery("update Store set name = :name, country = :country, city = :city, postalCode = :postalCode where id = :id");
+        query.setParameter("name", store.getName());
+        query.setParameter("country", store.getCountry());
+        query.setParameter("city", store.getCity());
+        query.setParameter("postalCode", store.getPostalCode());
+        query.setParameter("id", store.getId());
+        query.executeUpdate();
+        return store;
+    }
 }

@@ -33,4 +33,6 @@ public interface StoreRepository {
 
     Address getStoreAddressByStoreName(String name);
 
+    Store editStore(Store store);
+
 }
