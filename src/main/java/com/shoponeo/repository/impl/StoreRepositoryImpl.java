@@ -126,4 +126,11 @@ public class StoreRepositoryImpl implements StoreRepository {
         query.executeUpdate();
         return store;
     }
+
+    @Override
+    public Store getStoreByOwner(String ownerUsername) {
+        Query query = entityManager.createQuery("from Store where owner.name = :name");
+        query.setParameter("name", ownerUsername);
+        return (Store) query.getResultList().get(0);
+    }
 }
