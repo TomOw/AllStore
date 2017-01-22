@@ -82,6 +82,7 @@ public class StoreRepositoryImpl implements StoreRepository {
         order.calculatePrice();
         store.addOrder(order);
         order.setStore(store);
+        store.setNoOfOrdersMade(store.getNoOfOrdersMade() + 1);
         entityManager.merge(store);
         return order;
     }
@@ -125,5 +126,12 @@ public class StoreRepositoryImpl implements StoreRepository {
         query.setParameter("id", store.getId());
         query.executeUpdate();
         return store;
+    }
+
+    @Override
+    public Store getStoreByOwner(String ownerUsername) {
+        Query query = entityManager.createQuery("from Store where owner.name = :name");
+        query.setParameter("name", ownerUsername);
+        return (Store) query.getResultList().get(0);
     }
 }

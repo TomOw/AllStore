@@ -35,4 +35,6 @@ public interface StoreRepository {
 
     Store editStore(Store store);
 
+    Store getStoreByOwner(String ownerUsername);
+
 }

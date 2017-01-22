@@ -2,6 +2,7 @@ package com.shoponeo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.shoponeo.model.shop.Order;
+import com.shoponeo.model.shop.Store;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -33,6 +34,10 @@ public class User implements UserDetails {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Order> orders;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "STORE_ID")
+    private Store store;
 
     public User() {
     }

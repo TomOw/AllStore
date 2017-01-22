@@ -54,4 +54,9 @@ public class StoreController {
     public void editStore(@RequestBody Store store) {
         storeRepository.editStore(store);
     }
+
+    @RequestMapping(value = "/allNames", method = RequestMethod.GET)
+    public List<String> getAllStoreNames() {
+        return storeRepository.getAllStoreNames();
+    }
 }

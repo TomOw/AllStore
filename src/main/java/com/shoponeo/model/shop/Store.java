@@ -1,7 +1,10 @@
 package com.shoponeo.model.shop;
 
+import com.shoponeo.model.User;
+
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -49,6 +52,9 @@ public class Store {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "store", cascade = CascadeType.ALL)
     private Set<Order> orders;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "store", cascade = CascadeType.ALL)
+    private List<User> owners;
 
     public Store() {
     }

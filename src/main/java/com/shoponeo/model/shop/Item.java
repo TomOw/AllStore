@@ -28,7 +28,7 @@ public class Item {
     @Column(name = "DESCRIPTION", length = 10000)
     private String description;
 
-    @Column(name = "PHOTO")
+    @Column(name = "PHOTO", length = 2000)
     private String photo;
 
     @Column(name = "NO_IN_STOCK")
