@@ -36,6 +36,7 @@ public class User implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Order> orders;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "STORE_ID")
     private Store store;
@@ -88,6 +89,10 @@ public class User implements UserDetails {
         } else {
             this.orders.add(order);
         }
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     @Override

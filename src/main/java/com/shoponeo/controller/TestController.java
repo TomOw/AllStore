@@ -1,5 +1,6 @@
 package com.shoponeo.controller;
 
+import com.shoponeo.model.Role;
 import com.shoponeo.model.User;
 import com.shoponeo.model.shop.*;
 import com.shoponeo.repository.*;
@@ -10,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Tomasz on 20.10.2016.
@@ -183,5 +182,21 @@ public class TestController {
     @RequestMapping(value = "/auth")
     public Principal getPrincipal(Principal principal) {
         return principal;
+    }
+
+    @RequestMapping(value = "/generate")
+    public void generate() {
+        List<String> stores = storeRepository.getAllStoreNames();
+        for (String store :
+                stores) {
+            String username = "manager" + store;
+            Set<Role> roles = new HashSet<>();
+            roles.add(new Role("ROLE_USER", true, username));
+            roles.add(new Role("ROLE_MANAGER", true, username));
+            User user = new User(username, username, roles);
+            user.setStore(storeRepository.getStoreByName(store).get(0));
+            //System.out.println(user);
+            userRepository.add(user);
+        }
     }
 }
