@@ -1,14 +1,17 @@
 package com.shoponeo.controller;
 
+import com.shoponeo.model.User;
 import com.shoponeo.model.shop.Address;
 import com.shoponeo.model.shop.Item;
 import com.shoponeo.model.shop.Order;
 import com.shoponeo.model.shop.Store;
 import com.shoponeo.repository.OrderRepository;
 import com.shoponeo.repository.StoreRepository;
+import com.shoponeo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -23,6 +26,9 @@ public class StoreController {
 
     @Autowired
     OrderRepository orderRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @RequestMapping(value = "/address/{storeName}")
     public Address getStoreAddresByStoreName(@PathVariable("storeName") String name) {
@@ -58,5 +64,12 @@ public class StoreController {
     @RequestMapping(value = "/allNames", method = RequestMethod.GET)
     public List<String> getAllStoreNames() {
         return storeRepository.getAllStoreNames();
+    }
+
+    @RequestMapping(value = "/owner", method = RequestMethod.GET)
+    public Store getStoreByOwner(Principal principal) {
+        String username = principal.getName();
+        User user = userRepository.get(username);
+        return storeRepository.getStoreByOwner(user.getUsername());
     }
 }
