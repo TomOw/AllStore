@@ -19,6 +19,8 @@ public interface UserRepository {
 
     List<User> getAll();
 
-    User update(User userModified );
+    User update(User userModified);
+
+    User getUserOnly(String username);
 
 }

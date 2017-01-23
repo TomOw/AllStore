@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -40,5 +41,12 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User update(User userModified) {
         return entityManager.merge(userModified);
+    }
+
+    @Override
+    public User getUserOnly(String username) {
+        Query query = entityManager.createQuery("select new com.shoponeo.model.User(user.username, user.password) from User user where user.username = :username");
+        query.setParameter("username", username);
+        return (User) query.getResultList().get(0);
     }
 }
