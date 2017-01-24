@@ -1,5 +1,7 @@
 package com.shoponeo.model.shop;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -47,6 +49,7 @@ public class Item {
     @JoinColumn(name = "STORE_ID", nullable = false)
     private Store store;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = CascadeType.ALL)
     private Set<Review> reviews;
 

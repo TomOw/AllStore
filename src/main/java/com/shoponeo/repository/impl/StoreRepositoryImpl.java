@@ -130,7 +130,7 @@ public class StoreRepositoryImpl implements StoreRepository {
 
     @Override
     public Store getStoreByOwner(String ownerUsername) {
-        Query query = entityManager.createQuery("from Store where owner.name = :name");
+        Query query = entityManager.createQuery("select store from Store store join store.owners owner where owner.username = :name");
         query.setParameter("name", ownerUsername);
         return (Store) query.getResultList().get(0);
     }

@@ -90,8 +90,9 @@ public class User implements UserDetails {
         }
     }
 
-    public Store getStore() {
-        return store;
+    @JsonIgnore
+    public String getStoreName() {
+        return this.store.getName();
     }
 
     public void setStore(Store store) {

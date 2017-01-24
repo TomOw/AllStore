@@ -70,6 +70,10 @@ public class StoreController {
     public Store getStoreByOwner(Principal principal) {
         String username = principal.getName();
         User user = userRepository.get(username);
-        return storeRepository.getStoreByOwner(user.getUsername());
+//        Store store = user.getStore();
+//        store.setOrders(null);
+//        return storeRepository.getStoreByName(store.getName()).get(0);
+        String storeName = user.getStoreName();
+        return storeRepository.getStoreByName(storeName).get(0);
     }
 }
