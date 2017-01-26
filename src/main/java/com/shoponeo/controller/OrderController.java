@@ -52,4 +52,9 @@ public class OrderController {
     public List<Order> getOrdersByUsername(@PathVariable("username") String username) {
         return orderRepository.getOrdersByUsername(username);
     }
+
+    @RequestMapping(value = "/get/loggedUser")
+    public List<Order> getOrderByLoggedUser(Principal principal) {
+        return orderRepository.getOrdersByUsername(principal.getName());
+    }
 }
