@@ -9,6 +9,7 @@ import com.shoponeo.repository.StoreRepository;
 import com.shoponeo.repository.UserRepository;
 import com.shoponeo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -48,11 +49,13 @@ public class OrderController {
         return order;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/get/{username}")
     public List<Order> getOrdersByUsername(@PathVariable("username") String username) {
         return orderRepository.getOrdersByUsername(username);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(value = "/get/loggedUser")
     public List<Order> getOrderByLoggedUser(Principal principal) {
         return orderRepository.getOrdersByUsername(principal.getName());

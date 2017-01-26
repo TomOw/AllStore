@@ -7,6 +7,7 @@ import com.shoponeo.repository.ItemRepository;
 import com.shoponeo.repository.ReviewRepository;
 import com.shoponeo.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -31,6 +32,7 @@ public class ItemController {
     @Autowired
     ReviewRepository reviewRepository;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/add/{store}", method = RequestMethod.POST)
     public Item addItem(@RequestBody Item item, @PathVariable("store") String storeName) {
         System.out.println(item);
@@ -40,12 +42,14 @@ public class ItemController {
         return item;
     }
 
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
     @RequestMapping(value = "/addSingle/{store}", method = RequestMethod.POST)
     public Item addSingleItem(@RequestBody Item item, @PathVariable("store") String storeName) {
         storeRepository.addItemToStore(storeRepository.getStoreByName(storeName).get(0), item);
         return item;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/add/list", method = RequestMethod.POST)
     public List<Item> addItemList(@RequestBody List<Item> itemList) {
         return storeRepository.addItemListToStore(itemList);
@@ -89,11 +93,13 @@ public class ItemController {
         return reviewRepository.getReviewsByItemName(name);
     }
 
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public void deleteItem(@RequestBody Item item) {
         itemRepository.deleteItem(item);
     }
 
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
     @RequestMapping(value = "/edit", method = RequestMethod.PUT)
     public Item editItem(@RequestBody Item item) {
         return itemRepository.editItem(item);

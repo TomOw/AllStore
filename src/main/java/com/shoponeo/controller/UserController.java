@@ -29,29 +29,34 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/add")
     public User addUser(@RequestBody User user) {
         userRepository.add(user);
         return user;
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(value = "/edit")
     public User editUser(@RequestBody User user) {
         userRepository.update(user);
         return user;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/all")
     public List<User> getAll() {
         return userRepository.getAll();
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/get/{username}")
     public User getUser(@PathVariable("username") String username) {
         return userRepository.get(username);
 
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping("/me")
     public User getLoggedInUser(Principal principal) {
         return userRepository.get(principal.getName());
