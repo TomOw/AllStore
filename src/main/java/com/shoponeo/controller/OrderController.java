@@ -11,6 +11,7 @@ import com.shoponeo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
@@ -35,10 +36,10 @@ public class OrderController {
     OrderRepository orderRepository;
 
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
-    public Order makeOrderFromCart(@RequestBody Cart cart) {
+    public Order makeOrderFromCart(@RequestBody Cart cart, Principal principal) {
         Order order = new Order();
         order.setDate(new Date());
-        User user = userRepository.get("user");
+        User user = userRepository.get(principal.getName());
         List<Item> items = cart.getItems();
         order.setUser(user);
         user.addOrder(order);
