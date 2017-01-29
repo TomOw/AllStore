@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by owczatom on 2016-10-21.
@@ -31,5 +32,5 @@ public interface ItemRepository {
 
     Item editItem(Item item);
 
-    List<Item> selectRandomItems(int count);
+    Set<Item> selectRandomItems(int count);
 }

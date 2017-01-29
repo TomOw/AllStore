@@ -9,7 +9,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.security.SecureRandom;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by owczatom on 2016-10-21.
@@ -97,11 +99,12 @@ public class ItemRepositoryImpl implements ItemRepository {
     }
 
     @Override
-    public List<Item> selectRandomItems(int count) {
+    public Set<Item> selectRandomItems(int count) {
         Query query = entityManager.createQuery("select item from Item item where item.name like :name order by rand()");
         query.setParameter("name", "%");
         query.setMaxResults(count);
         List<Item> items = query.getResultList();
-        return items;
+        Set<Item> itemSet = new HashSet<>(items);
+        return itemSet;
     }
 }

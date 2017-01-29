@@ -106,7 +106,7 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/random")
-    public List<Item> getRandomItems(@RequestParam("count") int count) {
+    public Set<Item> getRandomItems(@RequestParam("count") int count) {
         return itemRepository.selectRandomItems(count);
     }
 }
