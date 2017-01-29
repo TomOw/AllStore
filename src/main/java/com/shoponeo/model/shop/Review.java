@@ -1,5 +1,7 @@
 package com.shoponeo.model.shop;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -20,6 +22,7 @@ public class Review {
     @Column(name = "RATING")
     private int rating;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ITEM_ID")
     private Item item;

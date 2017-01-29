@@ -1,5 +1,6 @@
 package com.shoponeo.model.shop;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.shoponeo.model.User;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "STORE")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Store {
 
     @Id

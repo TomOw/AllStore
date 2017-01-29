@@ -9,8 +9,10 @@ import com.shoponeo.repository.StoreRepository;
 import com.shoponeo.repository.UserRepository;
 import com.shoponeo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
@@ -35,10 +37,10 @@ public class OrderController {
     OrderRepository orderRepository;
 
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
-    public Order makeOrderFromCart(@RequestBody Cart cart) {
+    public Order makeOrderFromCart(@RequestBody Cart cart, Principal principal) {
         Order order = new Order();
         order.setDate(new Date());
-        User user = userRepository.get("user");
+        User user = userRepository.get(principal.getName());
         List<Item> items = cart.getItems();
         order.setUser(user);
         user.addOrder(order);
@@ -47,8 +49,15 @@ public class OrderController {
         return order;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/get/{username}")
     public List<Order> getOrdersByUsername(@PathVariable("username") String username) {
         return orderRepository.getOrdersByUsername(username);
+    }
+
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @RequestMapping(value = "/get/loggedUser")
+    public List<Order> getOrderByLoggedUser(Principal principal) {
+        return orderRepository.getOrdersByUsername(principal.getName());
     }
 }

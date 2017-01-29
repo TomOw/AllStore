@@ -18,6 +18,7 @@ import java.util.*;
  */
 @RestController
 @RequestMapping(value = "/test")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class TestController {
 
     @Autowired
@@ -178,7 +179,6 @@ public class TestController {
         return new Review("Review description", 4, null);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/auth")
     public Principal getPrincipal(Principal principal) {
         return principal;

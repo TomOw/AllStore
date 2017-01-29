@@ -27,7 +27,6 @@ public class User implements UserDetails {
     @Column(name = "PASSWORD")
     private String password;
 
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "OWNER", referencedColumnName = "USERNAME")
     private Set<Role> authorities;
@@ -91,6 +90,11 @@ public class User implements UserDetails {
         }
     }
 
+    @JsonIgnore
+    public String getStoreName() {
+        return this.store.getName();
+    }
+
     public void setStore(Store store) {
         this.store = store;
     }
@@ -102,6 +106,25 @@ public class User implements UserDetails {
                 ", password='" + password + '\'' +
                 ", authorities=" + authorities +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (getUsername() != null ? !getUsername().equals(user.getUsername()) : user.getUsername() != null)
+            return false;
+        return getPassword() != null ? getPassword().equals(user.getPassword()) : user.getPassword() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getUsername() != null ? getUsername().hashCode() : 0;
+        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
+        return result;
     }
 
     @Override
