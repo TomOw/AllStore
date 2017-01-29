@@ -104,4 +104,9 @@ public class ItemController {
     public Item editItem(@RequestBody Item item) {
         return itemRepository.editItem(item);
     }
+
+    @RequestMapping(value = "/random")
+    public List<Item> getRandomItems(@RequestParam("count") int count) {
+        return itemRepository.selectRandomItems(count);
+    }
 }

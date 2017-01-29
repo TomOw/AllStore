@@ -95,4 +95,13 @@ public class ItemRepositoryImpl implements ItemRepository {
         entityManager.merge(item);
         return item;
     }
+
+    @Override
+    public List<Item> selectRandomItems(int count) {
+        Query query = entityManager.createQuery("select item from Item item where item.name like :name order by rand()");
+        query.setParameter("name", "%");
+        query.setMaxResults(count);
+        List<Item> items = query.getResultList();
+        return items;
+    }
 }

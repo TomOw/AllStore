@@ -30,4 +30,6 @@ public interface ItemRepository {
     void deleteItem(Item item);
 
     Item editItem(Item item);
+
+    List<Item> selectRandomItems(int count);
 }
