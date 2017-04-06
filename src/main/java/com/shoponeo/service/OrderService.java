@@ -7,9 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by Tomasz on 25.12.2016.
- */
 @Service
 public interface OrderService {
 

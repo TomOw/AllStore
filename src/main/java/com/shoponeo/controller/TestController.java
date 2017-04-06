@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 import java.util.*;
 
-/**
- * Created by Tomasz on 20.10.2016.
- */
 @RestController
 @RequestMapping(value = "/test")
 @PreAuthorize("hasRole('ROLE_ADMIN')")

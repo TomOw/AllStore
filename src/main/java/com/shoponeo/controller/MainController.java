@@ -5,9 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * Created by Tomasz on 25.11.2016.
- */
 @Controller
 public class MainController {
 

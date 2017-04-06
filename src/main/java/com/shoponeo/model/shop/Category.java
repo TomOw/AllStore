@@ -2,9 +2,6 @@ package com.shoponeo.model.shop;
 
 import javax.persistence.*;
 
-/**
- * Created by owczatom on 2016-10-21.
- */
 
 public class Category {
 

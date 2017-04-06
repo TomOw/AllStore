@@ -16,10 +16,6 @@ import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Tomasz on 25.12.2016.
- */
-
 @RestController
 @RequestMapping(value = "/order")
 public class OrderController {

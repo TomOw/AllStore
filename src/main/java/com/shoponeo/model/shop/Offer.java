@@ -1,8 +1,5 @@
 package com.shoponeo.model.shop;
 
-/**
- * Created by Tomasz on 19.11.2016.
- */
 public class Offer implements Comparable {
 
     private String storeName;

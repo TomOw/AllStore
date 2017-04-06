@@ -14,11 +14,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-/**
- * Created by Tomasz on 20.10.2016.
- */
-
-
 @Configuration
 public class DatabaseConfig {
 

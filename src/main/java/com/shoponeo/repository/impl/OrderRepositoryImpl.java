@@ -11,9 +11,6 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Created by Tomasz on 01.11.2016.
- */
 @Repository
 @Transactional
 public class OrderRepositoryImpl implements OrderRepository {

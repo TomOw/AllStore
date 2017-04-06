@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * Created by Tomasz on 17.12.2016.
- */
 @RequestMapping(value = "/category")
 @RestController
 public class CategoryController {

@@ -1,8 +1,5 @@
 package com.shoponeo.model.shop;
 
-/**
- * Created by Tomasz on 20.11.2016.
- */
 public class Address {
 
     private String country;

@@ -12,9 +12,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Tomasz on 20.10.2016.
- */
 @Entity
 @Table(name = "USER")
 public class User implements UserDetails {

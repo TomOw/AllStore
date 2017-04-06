@@ -6,9 +6,6 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Created by owczatom on 2016-10-21.
- */
 @Repository
 @Transactional
 public interface StoreRepository {

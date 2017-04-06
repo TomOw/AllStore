@@ -8,9 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by owczatom on 2016-10-21.
- */
 @Entity
 @Table(name = "STORE")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

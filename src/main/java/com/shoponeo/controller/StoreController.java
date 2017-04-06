@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
-/**
- * Created by Tomasz on 20.11.2016.
- */
 @RestController
 @RequestMapping(value = "/store")
 public class StoreController {

@@ -6,9 +6,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by owczatom on 2016-10-21.
- */
 @Entity
 @Table(name = "ITEM")
 public class Item {

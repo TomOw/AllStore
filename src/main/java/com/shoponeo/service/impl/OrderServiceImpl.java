@@ -13,9 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Tomasz on 25.12.2016.
- */
 @Service
 public class OrderServiceImpl implements OrderService {
 

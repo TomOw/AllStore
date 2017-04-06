@@ -12,15 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 import java.util.List;
 
-/**
- * Created by Tomasz on 24.12.2016.
- */
-
-
-
-/**
- * Created by Tomasz on 20.12.2016.
- */
 @RestController
 @PreAuthorize("isAuthenticated()")
 @RequestMapping(value = "/user")

@@ -2,9 +2,6 @@ package com.shoponeo.model.shop;
 
 import java.util.List;
 
-/**
- * Created by Tomasz on 20.12.2016.
- */
 public class Cart {
 
     private List<Item> items;

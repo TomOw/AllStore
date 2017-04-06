@@ -16,9 +16,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.jar.Attributes;
 
-/**
- * Created by owczatom on 2016-10-21.
- */
 @SuppressWarnings("JpaQlInspection")
 @Repository
 @Transactional

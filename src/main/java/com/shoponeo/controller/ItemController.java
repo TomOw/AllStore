@@ -15,10 +15,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Tomasz on 16.11.2016.
- */
-
 @RestController
 @RequestMapping(value = "/item")
 public class ItemController {

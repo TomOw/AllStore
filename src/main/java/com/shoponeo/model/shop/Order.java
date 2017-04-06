@@ -5,9 +5,6 @@ import com.shoponeo.model.User;
 import javax.persistence.*;
 import java.util.*;
 
-/**
- * Created by Tomasz on 01.11.2016.
- */
 @Entity
 @Table(name = "ZAMOWIENIE")
 public class Order {

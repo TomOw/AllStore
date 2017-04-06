@@ -1,8 +1,5 @@
 package com.shoponeo.model;
 
-/**
- * Created by Tomasz on 15.12.2016.
- */
 public class Error {
 
     private String reason;

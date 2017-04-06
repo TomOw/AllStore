@@ -15,9 +15,6 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
-/**
- * Created by Tomasz on 20.10.2016.
- */
 
 @Configuration
 @EnableWebSecurity
